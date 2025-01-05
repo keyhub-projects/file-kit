@@ -23,4 +23,6 @@ public interface FileUploader {
 	Path read(String sourcePath) throws IOException;
 
 	void write(Path source, String targetPath) throws IOException;
+
+	void remove(String sourcePath) throws IOException;
 }

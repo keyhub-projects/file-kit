@@ -72,4 +72,10 @@ public class LocalFileUploader implements FileUploader {
 		}
 		Files.copy(source, target);
 	}
+
+	@Override
+	public void remove(String sourcePath) throws IOException {
+		Path path = Paths.get(sourcePath);
+		Files.deleteIfExists(path);
+	}
 }

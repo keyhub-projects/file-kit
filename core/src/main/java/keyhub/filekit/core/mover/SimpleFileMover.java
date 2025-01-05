@@ -82,10 +82,10 @@ public class SimpleFileMover<FROM_ID, TO_ID> implements FileMover<FROM_ID, TO_ID
 		if (fromConfig.equals(toConfig) && fromSourcePath.equals(toSourcePath)) {
 			@SuppressWarnings("unchecked")
 			var result = (TO_ID)this.from.findByPath(fromSourcePath)
-				.orElseThrow(()->new IOException("It exists, but not exists in DB")).getId();
+				.orElseThrow(()->new IOException("It exists, but not exists in DB")).id();
 			return result;
 		}
 		Path path = this.from.read(fromSourcePath);
-		return this.to.write(path, toSourcePath).getId();
+		return this.to.write(path, toSourcePath).id();
 	}
 }

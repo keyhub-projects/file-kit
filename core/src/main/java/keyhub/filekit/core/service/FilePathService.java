@@ -12,5 +12,7 @@ public interface FilePathService<ID> {
 
 	Optional<? extends FilePath<ID>> findById(ID hashId);
 
-	Optional<? extends FilePath<ID>> findByPath(String fromSourcePath);
+	Optional<? extends FilePath<ID>> findByPath(String sourcePath);
+
+	FilePath<ID> remove(String sourcePath);
 }

@@ -47,4 +47,9 @@ public class FtpFileUploader implements FileUploader {
 	public void write(Path source, String targetPath) throws IOException {
 
 	}
+
+	@Override
+	public void remove(String sourcePath) throws IOException {
+
+	}
 }

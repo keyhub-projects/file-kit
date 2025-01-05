@@ -27,5 +27,7 @@ public interface FileStorage<ID> {
 
 	FilePath<ID> write(Path source, String targetPath) throws IOException;
 
-	Optional<? extends FilePath<ID>> findByPath(String fromSourcePath);
+	Optional<? extends FilePath<ID>> findByPath(String sourcePath);
+
+	FilePath<ID> remove(String fromSourcePath) throws IOException;
 }

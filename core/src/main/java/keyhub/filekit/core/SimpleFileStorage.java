@@ -57,8 +57,8 @@ public class SimpleFileStorage<ID> implements FileStorage<ID> {
 	}
 
 	@Override
-	public Optional<? extends FilePath<ID>> findByPath(String fromSourcePath) {
-		return pathService.findByPath(fromSourcePath);
+	public Optional<? extends FilePath<ID>> findByPath(String sourcePath) {
+		return pathService.findByPath(sourcePath);
 	}
 
 	@Override
@@ -67,5 +67,12 @@ public class SimpleFileStorage<ID> implements FileStorage<ID> {
 		FilePath<ID> filePath = pathService.save(source, path);
 		this.uploader.write(source, targetPath);
 		return filePath;
+	}
+
+	@Override
+	public FilePath<ID> remove(String sourcePath) throws IOException {
+		FilePath<ID> result = pathService.remove(sourcePath);
+		this.uploader.remove(sourcePath);
+		return result;
 	}
 }

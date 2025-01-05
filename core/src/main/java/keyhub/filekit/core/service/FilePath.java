@@ -1,9 +1,9 @@
 package keyhub.filekit.core.service;
 
 public interface FilePath<ID> {
-	ID getId();
+	ID id();
 
-	String getName();
+	String name();
 
-	String getPath();
+	String path();
 }
