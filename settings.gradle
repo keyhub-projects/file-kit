@@ -1,0 +1,6 @@
+rootProject.name = 'file-kit'
+include 'core'
+include 'core-sandbox'
+include 'apt'
+include 'core-sandbox'
+
