@@ -1,6 +1,6 @@
 package keyhub.filekit.core;
 
-import keyhub.filekit.core.config.FileConfigMap;
+import keyhub.filekit.core.uploader.FileUploaderConfigMap;
 import keyhub.filekit.core.service.FilePath;
 import keyhub.filekit.core.service.FilePathService;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface FileStorage<ID> {
 	static <ID> FileStorage<ID> of(
-		FileConfigMap configMap,
+		FileUploaderConfigMap configMap,
 		FilePathService<ID> pathService
 	) {
 		return SimpleFileStorage.of(configMap, pathService);
@@ -21,7 +21,7 @@ public interface FileStorage<ID> {
 
 	Optional<? extends FilePath<ID>> find(ID id);
 
-	FileConfigMap configMap();
+	FileUploaderConfigMap configMap();
 
 	Path read(String sourcePath) throws IOException;
 

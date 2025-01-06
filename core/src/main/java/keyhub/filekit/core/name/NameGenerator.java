@@ -1,5 +1,5 @@
 package keyhub.filekit.core.name;
 
-public interface NameFactory {
+public interface NameGenerator {
 	String generateName();
 }

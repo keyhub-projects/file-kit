@@ -2,7 +2,7 @@ package keyhub.filekit.core.name;
 
 import java.util.UUID;
 
-public class UuidV7NameFactory implements NameFactory {
+public class UuidV7NameGenerator implements NameGenerator {
 
 	@Override
 	public String generateName() {
