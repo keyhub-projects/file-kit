@@ -1,7 +1,7 @@
 package keyhub.filekit.core.mover;
 
 import keyhub.filekit.core.FileStorage;
-import keyhub.filekit.core.config.FileConfigMap;
+import keyhub.filekit.core.uploader.FileUploaderConfigMap;
 import lombok.experimental.Accessors;
 
 import java.io.IOException;
@@ -77,8 +77,8 @@ public class SimpleFileMover<FROM_ID, TO_ID> implements FileMover<FROM_ID, TO_ID
 	}
 
 	private TO_ID moveFile(String fromSourcePath, String toSourcePath) throws IOException {
-		FileConfigMap fromConfig = this.from.configMap();
-		FileConfigMap toConfig = this.to.configMap();
+		FileUploaderConfigMap fromConfig = this.from.configMap();
+		FileUploaderConfigMap toConfig = this.to.configMap();
 		if (fromConfig.equals(toConfig) && fromSourcePath.equals(toSourcePath)) {
 			@SuppressWarnings("unchecked")
 			var result = (TO_ID)this.from.findByPath(fromSourcePath)

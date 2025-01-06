@@ -1,8 +1,7 @@
 package keyhub.filekit.core.uploader;
 
-import keyhub.filekit.core.config.FileConfigMap;
-import keyhub.filekit.core.name.NameFactory;
-import keyhub.filekit.core.name.UuidV7NameFactory;
+import keyhub.filekit.core.name.NameGenerator;
+import keyhub.filekit.core.name.UuidV7NameGenerator;
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,18 +13,18 @@ import java.nio.file.Paths;
 
 public class LocalFileUploader implements FileUploader {
 	private final String directoryPath;
-	private final NameFactory nameFactory;
+	private final NameGenerator nameGenerator;
 
-	public LocalFileUploader(String directoryPath, NameFactory nameFactory) {
+	private LocalFileUploader(String directoryPath, NameGenerator nameGenerator) {
 		this.directoryPath = directoryPath;
-		this.nameFactory = nameFactory;
+		this.nameGenerator = nameGenerator;
 	}
 
-	public static LocalFileUploader of(FileConfigMap configMap) {
-		if (configMap.getNameFactory() == null) {
-			return new LocalFileUploader(configMap.getDirectoryPath(), new UuidV7NameFactory());
+	public static LocalFileUploader of(LocalFileUploaderConfigMap configMap) {
+		if (configMap.nameGenerator() == null) {
+			return new LocalFileUploader(configMap.directoryPath(), new UuidV7NameGenerator());
 		}
-		return new LocalFileUploader(configMap.getDirectoryPath(), configMap.getNameFactory());
+		return new LocalFileUploader(configMap.directoryPath(), configMap.nameGenerator());
 	}
 
 	@Override
@@ -47,7 +46,7 @@ public class LocalFileUploader implements FileUploader {
 
 	@Override
 	public String preparePath(MultipartFile file) {
-		return directoryPath + "/" + nameFactory.generateName();
+		return directoryPath + "/" + nameGenerator.generateName();
 	}
 
 	@Override

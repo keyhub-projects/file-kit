@@ -1,6 +1,6 @@
 package keyhub.filekit.core;
 
-import keyhub.filekit.core.config.FileConfigMap;
+import keyhub.filekit.core.uploader.FileUploaderConfigMap;
 import keyhub.filekit.core.service.FilePath;
 import keyhub.filekit.core.service.FilePathService;
 import keyhub.filekit.core.uploader.FileUploader;
@@ -12,17 +12,17 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 public class SimpleFileStorage<ID> implements FileStorage<ID> {
-	private final FileConfigMap configMap;
+	private final FileUploaderConfigMap configMap;
 	private final FileUploader uploader;
 	private final FilePathService<ID> pathService;
 
-	public SimpleFileStorage(FileConfigMap configMap, FileUploader uploader, FilePathService<ID> pathService) {
+	public SimpleFileStorage(FileUploaderConfigMap configMap, FileUploader uploader, FilePathService<ID> pathService) {
 		this.configMap = configMap;
 		this.uploader = uploader;
 		this.pathService = pathService;
 	}
 
-	static <ID> SimpleFileStorage<ID> of(FileConfigMap configMap, FilePathService<ID> pathService) {
+	static <ID> SimpleFileStorage<ID> of(FileUploaderConfigMap configMap, FilePathService<ID> pathService) {
 		return new SimpleFileStorage<>(
 			configMap,
 			FileUploader.of(configMap),
@@ -47,7 +47,7 @@ public class SimpleFileStorage<ID> implements FileStorage<ID> {
 	}
 
 	@Override
-	public FileConfigMap configMap() {
+	public FileUploaderConfigMap configMap() {
 		return this.configMap;
 	}
 

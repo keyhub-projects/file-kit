@@ -1,16 +1,15 @@
 package keyhub.filekit.core.uploader;
 
-import keyhub.filekit.core.config.FileConfigMap;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
 public interface FileUploader {
-	static FileUploader of(FileConfigMap configMap) {
-		return switch (configMap.getType()) {
-			case LOCAL -> LocalFileUploader.of(configMap);
-			default -> LocalFileUploader.of(configMap);
+	static FileUploader of(FileUploaderConfigMap configMap) {
+		return switch (configMap.type()) {
+			case LOCAL -> LocalFileUploader.of((LocalFileUploaderConfigMap) configMap);
+			default -> LocalFileUploader.of((LocalFileUploaderConfigMap) configMap);
 		};
 	}
 

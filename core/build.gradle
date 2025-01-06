@@ -2,6 +2,7 @@ plugins {
     id 'java-library'
     id 'org.springframework.boot' version '3.4.1'
     id 'io.spring.dependency-management' version '1.1.7'
+    id 'org.cadixdev.licenser' version '0.6.1'
 }
 
 group = 'io.github.keyhub-projects'
@@ -21,6 +22,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.integration:spring-integration-ftp'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -30,4 +33,8 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+license {
+    header = project.file('../LICENSE')
 }
